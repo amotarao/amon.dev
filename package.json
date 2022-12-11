@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/react": "^1.2.2",
