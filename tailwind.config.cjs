@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -18,6 +18,9 @@ module.exports = {
       ...colors,
       base: '#fafafa',
       text: '#222222',
+    },
+    fontFamily: {
+      'sans-serif': ['Roboto', 'sans-serif'],
     },
   },
   plugins: [],
