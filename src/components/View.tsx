@@ -35,7 +35,7 @@ export const View: React.FC<ViewProps> = ({ className }) => {
       children: (
         <section className="grid h-full w-full grid-cols-1 grid-rows-1 p-[10%]">
           <div className="self-center">
-            <h2 className="mb-24 text-32 font-bold">アカウント</h2>
+            <h2 className="mb-16 text-32 font-bold">アカウント</h2>
             <ul className="grid grid-cols-1 gap-16">
               {[
                 { service: 'Twitter', screenName: '@amotarao', href: 'https://twitter.com/amotarao' },
