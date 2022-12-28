@@ -1,6 +1,7 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Accounts } from './views/Accounts';
+import { Services } from './views/Services';
 import { Top } from './views/Top';
 
 const DEVELOPMENT_MODE = false;
@@ -10,41 +11,49 @@ export type ViewProps = {
 };
 
 export const View: React.FC<ViewProps> = ({ className }) => {
+  const [currentView, setCurrentView] = useState('top');
+
   const cells: {
+    view: string;
     x: number;
     y: number;
     rotate?: number;
     style?: React.CSSProperties;
     children?: React.ReactNode;
-  }[] = [
-    {
-      x: 0,
-      y: 100,
-      children: <Top />,
-    },
-    {
-      x: 20,
-      y: 100,
-      children: <Accounts />,
-    },
-    {
-      x: 25,
-      y: 75,
-      rotate: 10,
-    },
-    {
-      x: 25,
-      y: 125,
-      rotate: -10,
-    },
-  ];
-  const [currentCell, setCurrentCell] = useState(cells[0]);
+  }[] = useMemo(
+    () => [
+      {
+        view: 'top',
+        x: 0,
+        y: 100,
+        children: <Top />,
+      },
+      {
+        view: 'accounts',
+        x: 20,
+        y: 100,
+        children: <Accounts onView={setCurrentView} />,
+      },
+      {
+        view: 'services',
+        x: 22,
+        y: 80,
+        rotate: -10,
+        children: <Services onView={setCurrentView} />,
+      },
+    ],
+    [setCurrentView]
+  );
 
   useEffect(() => {
     setTimeout(() => {
-      setCurrentCell(cells[1]);
+      setCurrentView('accounts');
     }, 1500);
   }, []);
+
+  const currentCell = useMemo(() => {
+    return cells.find((cell) => cell.view === currentView) || cells[0];
+  }, [currentView]);
 
   return (
     <div
@@ -122,7 +131,7 @@ export const View: React.FC<ViewProps> = ({ className }) => {
               ))}
               {DEVELOPMENT_MODE &&
                 cells.map((cell, i) => (
-                  <button key={i} className="rounded-full bg-white p-10" onClick={() => setCurrentCell(cell)}>
+                  <button key={i} className="rounded-full bg-white p-10" onClick={() => setCurrentView(cell.view)}>
                     x:{cell.x} y:{cell.y}
                   </button>
                 ))}

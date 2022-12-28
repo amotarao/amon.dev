@@ -4,7 +4,7 @@ export const Top: React.FC = () => {
       <div className="self-center">
         <h1 className="flex items-baseline gap-8 self-center">
           <span className="text-48 leading-none">あもん</span>
-          <span className="text-32 leading-none">@amon</span>
+          <span className="font-sans-serif text-32 font-medium leading-none">@amon</span>
         </h1>
       </div>
     </section>
