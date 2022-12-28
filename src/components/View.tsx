@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
+import { Accounts } from './views/Accounts';
+import { Top } from './views/Top';
 
 const DEVELOPMENT_MODE = false;
 
@@ -18,57 +20,12 @@ export const View: React.FC<ViewProps> = ({ className }) => {
     {
       x: 0,
       y: 100,
-      children: (
-        <section className="grid h-full w-full grid-cols-1 grid-rows-1 p-[10%]">
-          <div className="self-center">
-            <h1 className="flex items-baseline gap-8 self-center">
-              <span className="text-48 leading-none">あもん</span>
-              <span className="text-32 leading-none">@amon</span>
-            </h1>
-          </div>
-        </section>
-      ),
+      children: <Top />,
     },
     {
       x: 20,
       y: 100,
-      children: (
-        <section className="grid h-full w-full grid-cols-1 grid-rows-1 p-[10%]">
-          <div className="self-center">
-            <h2 className="mb-16 text-32 font-bold">アカウント</h2>
-            <ul className="grid grid-cols-1 gap-16">
-              {[
-                { service: 'Twitter', screenName: '@amotarao', href: 'https://twitter.com/amotarao' },
-                { service: 'GitHub', screenName: '@amotarao', href: 'https://github.com/amotarao' },
-                { service: 'Instagram', screenName: '@amon_dayoo', href: 'https://www.instagram.com/amon_dayoo/' },
-                { service: 'Zenn', screenName: 'amon', href: 'https://zenn.dev/amon' },
-              ].map((item, i) => (
-                <li key={i}>
-                  <a
-                    className="flex w-max items-center gap-16 no-underline"
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <svg className="block h-32 w-32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M63.1127 32.4558L57.4558 38.1127L37.6569 57.9117L32 52.2548L48.2548 36H0V28H47.3431L32 12.6569L37.6569 7L57.4558 26.799L63.1127 32.4558Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                    <p className="flex items-baseline gap-8">
-                      <span className="block text-32 leading-none">{item.service}</span>
-                      <span className="block text-16 leading-none">{item.screenName}</span>
-                    </p>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ),
+      children: <Accounts />,
     },
     {
       x: 25,
@@ -160,17 +117,15 @@ export const View: React.FC<ViewProps> = ({ className }) => {
                     ...cell.style,
                   }}
                 >
-                  <div className="h-[100dvh] max-h-[200dvmin] w-[100dvw] max-w-[200dvmin]">
-                    {cell.children}
-                    {DEVELOPMENT_MODE &&
-                      cells.map((cell, i) => (
-                        <button key={i} className="rounded-full bg-white p-10" onClick={() => setCurrentCell(cell)}>
-                          x:{cell.x} y:{cell.y}
-                        </button>
-                      ))}
-                  </div>
+                  <div className="h-[100dvh] max-h-[200dvmin] w-[100dvw] max-w-[200dvmin]">{cell.children}</div>
                 </div>
               ))}
+              {DEVELOPMENT_MODE &&
+                cells.map((cell, i) => (
+                  <button key={i} className="rounded-full bg-white p-10" onClick={() => setCurrentCell(cell)}>
+                    x:{cell.x} y:{cell.y}
+                  </button>
+                ))}
             </div>
           </div>
         </div>
