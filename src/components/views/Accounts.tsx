@@ -13,7 +13,7 @@ export const Accounts: React.FC<{
             { service: 'GitHub', screenName: '@amotarao', href: 'https://github.com/amotarao' },
             { service: 'Instagram', screenName: '@amon_dayoo', href: 'https://www.instagram.com/amon_dayoo/' },
             { service: 'Zenn', screenName: 'amon', href: 'https://zenn.dev/amon' },
-            { service: 'TravellerAPI', screenName: 'ADDress@amon', href: 'https://traveller-api.amon.dev/a/amon' },
+            { service: 'TravellerAPI', screenName: '@amon', href: 'https://traveller-api.amon.dev/u/amon' },
           ].map((item, i) => (
             <li key={i}>
               <a
